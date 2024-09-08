@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Pedidos</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        input, button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gerenciar Pedidos</h1>
+    
+    <form id="pedidoForm">
+        <input type="text" id="id" placeholder="ID" required>
+        <input type="text" id="vendedor" placeholder="Vendedor" required>
+        <input type="text" id="cliente" placeholder="Cliente" required>
+        <input type="text" id="clienteFinal" placeholder="Cliente Final" required>
+        <input type="number" id="cortes" placeholder="Cortes" required>
+        <input type="date" id="dataEntrada" placeholder="Data de Entrada" required>
+        <button type="submit">Registrar Pedido</button>
+    </form>
+    
+    <button id="generateTestData">Gerar Dados de Teste</button>
+
+    <h2>Excluir Pedido</h2>
+    <input type="text" id="deleteId" placeholder="ID do Pedido para Deletar" required>
+    <button id="deletePedido">Excluir Pedido</button>
+    
+    <script>
+        const form = document.getElementById('pedidoForm');
+        const generateTestDataButton = document.getElementById('generateTestData');
+        const deletePedidoButton = document.getElementById('deletePedido');
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const id = document.getElementById('id').value;
+            const vendedor = document.getElementById('vendedor').value;
+            const cliente = document.getElementById('cliente').value;
+            const clienteFinal = document.getElementById('clienteFinal').value;
+            const cortes = document.getElementById('cortes').value;
+            const dataEntrada = document.getElementById('dataEntrada').value;
+
+            try {
+                const response = await axios.post('http://localhost:5000/add-pedido', {
+                    id,
+                    vendedor,
+                    cliente,
+                    clienteFinal,
+                    cortes,
+                    dataEntrada
+                });
+                Toastify({
+                    text: 'Pedido registrado com sucesso!',
+                    backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
+                }).showToast();
+            } catch (error) {
+                const errorMessage = error.response?.data?.error || 'Erro ao registrar pedido.';
+                Toastify({
+                    text: errorMessage,
+                    backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
+                }).showToast();
+            }
+        });
+        
+        generateTestDataButton.addEventListener('click', async () => {
+            const testPedidos = Array.from({ length: 30 }, (_, index) => ({
+                id: `TEST${index + 1}`,
+                vendedor: `Vendedor ${index + 1}`,
+                cliente: `Cliente ${index + 1}`,
+                clienteFinal: `Cliente Final ${index + 1}`,
+                cortes: (100 * (index + 1)).toString(),
+                dataEntrada: new Date().toISOString().split('T')[0],
+            }));
+
+            try {
+                for (const pedido of testPedidos) {
+                    await axios.post('http://localhost:5000/add-pedido', pedido);
+                }
+                Toastify({
+                    text: 'Dados de teste gerados com sucesso!',
+                    backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
+                }).showToast();
+            } catch (error) {
+                const errorMessage = error.response?.data?.error || 'Erro ao gerar dados de teste.';
+                Toastify({
+                    text: errorMessage,
+                    backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
+                }).showToast();
+            }
+        });
+        
+        deletePedidoButton.addEventListener('click', async () => {
+            const id = document.getElementById('deleteId').value;
+
+            if (!id) {
+                Toastify({
+                    text: 'Por favor, forneça um ID.',
+                    backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
+                }).showToast();
+                return;
+            }
+
+            try {
+                await axios.delete(`http://localhost:5000/delete-pedido/${id}`);
+                Toastify({
+                    text: 'Pedido excluído com sucesso!',
+                    backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
+                }).showToast();
+            } catch (error) {
+                const errorMessage = error.response?.data?.error || 'Erro ao excluir pedido.';
+                Toastify({
+                    text: errorMessage,
+                    backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
+                }).showToast();
+            }
+        });
+    </script>
+</body>
+</html>
