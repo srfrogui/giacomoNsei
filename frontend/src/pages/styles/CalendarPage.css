@@ -1,0 +1,113 @@
+/* CalendarPage.css */
+.calendar-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.selected-date {
+  margin-top: 20px;
+}
+
+.react-calendar .react-calendar__tile--active {
+  background-color: #a0d6f4;
+  color: rgb(0, 0, 0);
+}
+
+.react-calendar .react-calendar__tile--now {
+  border: 2px solid red;
+}
+
+/* Adiciona uma regra global para o texto do calendário ser preto */
+.react-calendar__tile {
+  color: black;
+}
+
+.highlight-high {
+  background-color: #ff9999; /* Cor de destaque para altos cortes */
+}
+
+.highlight {
+  background-color: #ffcc99; /* Cor de destaque para cortes médios */
+}
+
+.light {
+  background-color: #deffbd;
+}
+
+/* Define a cor do texto dos feriados como vermelho */
+.feriado {
+  color: red;
+}
+
+/* Ajusta o tamanho do calendário */
+.react-calendar {
+  width: 100%;
+  max-width: 800px; /* Ajuste conforme necessário */
+  margin: 0 auto;
+}
+
+/* Define o estilo da navegação do calendário */
+.react-calendar__navigation {
+  color: black; /* Define a cor do texto do mês e anos como preto */
+}
+
+/* Estiliza os botões de navegação (setinhas) */
+.react-calendar__navigation__arrow {
+  color: black; /* Define a cor das setinhas como preto */
+}
+
+/* Define o estilo para os botões de navegação */
+.react-calendar__navigation button {
+  background: transparent; /* Fundo transparente para os botões */
+  border: none; /* Remove bordas para um visual mais limpo */
+  color: black; /* Define a cor do texto dos botões como preto */
+  font-size: 1.5rem; /* Ajuste o tamanho da fonte conforme necessário */
+}
+
+/* Estiliza o texto do mês (ex: Setembro) */
+.react-calendar__month-view__header {
+  color: black; /* Define a cor do texto do mês e anos como preto */
+}
+
+.react-calendar__tile {
+  position: relative;
+}
+
+/* Estilo do tooltip */
+.tile-content .tooltip {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.tile-content:hover .tooltip {
+  display: block;
+}
+
+/* Estilo para a data em que o mouse está sobre */
+.tooltip-content {
+  position: absolute;
+  background-color: #f8f9fa;
+  color: #333;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  top: 60px;
+  left: 20px;
+  z-index: 10;
+}
+
+
+@media (max-width: 768px) {
+  .calendar-page {
+    padding: 8px;
+  }
+}

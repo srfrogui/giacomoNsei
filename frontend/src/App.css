@@ -1,0 +1,113 @@
+.App {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+  }
+  
+  /* Estiliza o contêiner que segura o formulário e a lista de pedidos */
+  .container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Espaço entre o formulário e a lista de pedidos */
+  }
+  
+  /* Estiliza o contêiner do formulário */
+  .form-container {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estiliza o contêiner da lista de pedidos */
+  .lista-container {
+    flex: 2;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estiliza o formulário */
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Estiliza as labels dos campos do formulário */
+  label {
+    margin-bottom: 10px;
+  }
+  
+  /* Estiliza os campos de input */
+  input[type="text"],
+  input[type="number"],
+  input[type="date"] {
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  /* Estiliza o botão do formulário */
+  button {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Estiliza o botão do formulário ao passar o mouse */
+  button:hover {
+    background-color: #d9ffdb;
+  }
+  
+  /* Estiliza a tabela da lista de pedidos */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  /* Estiliza o cabeçalho da tabela */
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  /* Estiliza o cabeçalho da tabela */
+  th {
+    background-color: #f4f4f4;
+  }
+  
+  /* Estiliza as linhas da tabela */
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Estiliza a página inicial */
+  .home-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .home-container h2 {
+    font-size: 24px;
+  }
+  
+  .home-container p {
+    font-size: 18px;
+  }
+  
+  .home-container a {
+    color: #4CAF50;
+    text-decoration: none;
+  }
+  
+  .home-container a:hover {
+    text-decoration: underline;
+  }
